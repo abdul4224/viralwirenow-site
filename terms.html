@@ -11,18 +11,26 @@
 
 <link rel="alternate" type="application/rss+xml" title="ViralWireNow" href="/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/viralwirenow-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
 </head>
 <body>
 <header class="site-header">
 <div class="container">
 <a class="site-title" href="/">ViralWireNow</a>
+<div class="site-search">
+<img src="/assets/icons/viralwirenow-icon.svg" alt="" width="20" height="20" aria-hidden="true">
+<input type="search" id="site-search-input" placeholder="Search articles on this page…" aria-label="Search articles">
+</div>
 <nav class="main-nav">
 <a href="/categories/technology.html">Technology</a><a href="/categories/ai.html">AI</a><a href="/categories/business.html">Business</a><a href="/categories/science.html">Science</a>
 </nav>
 </div>
 </header>
 <main class="container">
-<h1>Terms of Use</h1><p>By using this site you agree to use its content for personal, non-commercial reference. All content is provided as-is.</p>
+<h1>Terms of Use</h1><p>By using ViralWireNow, you agree to the following terms.</p><h2>Use of content</h2><p>Content on this site is provided for personal, non-commercial reading and reference. You may share links to our articles freely. Reproducing full articles elsewhere without permission is not permitted.</p><h2>No warranty</h2><p>Content is provided "as is" without warranties of any kind, express or implied, including but not limited to accuracy, completeness, or fitness for a particular purpose.</p><h2>Advertising</h2><p>This site is supported by third-party advertising. We are not responsible for the content of advertisements shown by our ad network.</p><h2>Changes</h2><p>These terms may be updated from time to time; continued use of the site constitutes acceptance of the current version.</p>
 </main>
 <div class="ad-slot ad-footer container" id="ad-footer"><script>
   atOptions = {
@@ -47,5 +55,25 @@
 </div>
 </footer>
 
+<script>
+// Lightweight client-side filter for the header search box: hides any
+// .article-card on THIS page whose title doesn't match what's typed.
+// This is a same-page filter, not a site-wide search index — with the
+// article volume this bot publishes at, that's a reasonable, zero-backend
+// way to make the search box actually do something rather than sit inert.
+(function () {
+  var input = document.getElementById('site-search-input');
+  if (!input) return;
+  var cards = document.querySelectorAll('.article-card');
+  input.addEventListener('input', function () {
+    var query = input.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      var heading = card.querySelector('h3');
+      var title = heading ? heading.textContent.toLowerCase() : '';
+      card.classList.toggle('search-hidden', query.length > 0 && title.indexOf(query) === -1);
+    });
+  });
+})();
+</script>
 </body>
 </html>
