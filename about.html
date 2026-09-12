@@ -11,18 +11,26 @@
 
 <link rel="alternate" type="application/rss+xml" title="ViralWireNow" href="/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/viralwirenow-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
 </head>
 <body>
 <header class="site-header">
 <div class="container">
 <a class="site-title" href="/">ViralWireNow</a>
+<div class="site-search">
+<img src="/assets/icons/viralwirenow-icon.svg" alt="" width="20" height="20" aria-hidden="true">
+<input type="search" id="site-search-input" placeholder="Search articles on this page…" aria-label="Search articles">
+</div>
 <nav class="main-nav">
 <a href="/categories/technology.html">Technology</a><a href="/categories/ai.html">AI</a><a href="/categories/business.html">Business</a><a href="/categories/science.html">Science</a>
 </nav>
 </div>
 </header>
 <main class="container">
-<h1>About</h1><p>ViralWireNow publishes AI-assisted news coverage and analysis, researched from multiple public sources and reviewed against originality and safety checks before publication. Content involving AI-generated video includes disclosure in the video description.</p>
+<h1>About</h1><p>ViralWireNow covers technology, business, science, and world news, combining automated trend discovery with AI-assisted writing and human-designed editorial safeguards.</p><p>Every article starts from multiple public news sources. Our system extracts the underlying facts, cross-checks them for consistency, and only proceeds to writing when there's enough independently reported information to work from. If a topic doesn't have enough verifiable source material, it's held back rather than published with guesswork filled in.</p><p>Before anything goes live, each article passes through an originality check (to catch anything too close to its sources), a content-safety check (to catch unsupported claims or unsafe topics), and an advertising-policy check (to keep prohibited categories off pages that carry ads). Anything that fails is held for review rather than published automatically.</p><p>Video content on our associated YouTube channel is produced with AI-assisted narration and editing, and that involvement is disclosed in each video's description.</p>
 </main>
 <div class="ad-slot ad-footer container" id="ad-footer"><script>
   atOptions = {
@@ -47,5 +55,25 @@
 </div>
 </footer>
 
+<script>
+// Lightweight client-side filter for the header search box: hides any
+// .article-card on THIS page whose title doesn't match what's typed.
+// This is a same-page filter, not a site-wide search index — with the
+// article volume this bot publishes at, that's a reasonable, zero-backend
+// way to make the search box actually do something rather than sit inert.
+(function () {
+  var input = document.getElementById('site-search-input');
+  if (!input) return;
+  var cards = document.querySelectorAll('.article-card');
+  input.addEventListener('input', function () {
+    var query = input.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      var heading = card.querySelector('h3');
+      var title = heading ? heading.textContent.toLowerCase() : '';
+      card.classList.toggle('search-hidden', query.length > 0 && title.indexOf(query) === -1);
+    });
+  });
+})();
+</script>
 </body>
 </html>
