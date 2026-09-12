@@ -11,18 +11,26 @@
 
 <link rel="alternate" type="application/rss+xml" title="ViralWireNow" href="/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/viralwirenow-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
 </head>
 <body>
 <header class="site-header">
 <div class="container">
 <a class="site-title" href="/">ViralWireNow</a>
+<div class="site-search">
+<img src="/assets/icons/viralwirenow-icon.svg" alt="" width="20" height="20" aria-hidden="true">
+<input type="search" id="site-search-input" placeholder="Search articles on this page…" aria-label="Search articles">
+</div>
 <nav class="main-nav">
 <a href="/categories/technology.html">Technology</a><a href="/categories/ai.html">AI</a><a href="/categories/business.html">Business</a><a href="/categories/science.html">Science</a>
 </nav>
 </div>
 </header>
 <main class="container">
-<h1>Contact</h1><p>For questions or corrections, please reach out via the contact details on our social profiles.</p>
+<h1>Contact</h1><p>Have a correction, a tip, or a question about something we published? We want to hear about it — accuracy matters more to us than speed.</p><p>The fastest way to reach us is through the social links on our homepage and footer. Please include the article title or URL you're referring to so we can look into it quickly.</p><p>For advertising or partnership inquiries, reach out through the same channels and mention what you're looking to discuss.</p>
 </main>
 <div class="ad-slot ad-footer container" id="ad-footer"><script>
   atOptions = {
@@ -47,5 +55,25 @@
 </div>
 </footer>
 
+<script>
+// Lightweight client-side filter for the header search box: hides any
+// .article-card on THIS page whose title doesn't match what's typed.
+// This is a same-page filter, not a site-wide search index — with the
+// article volume this bot publishes at, that's a reasonable, zero-backend
+// way to make the search box actually do something rather than sit inert.
+(function () {
+  var input = document.getElementById('site-search-input');
+  if (!input) return;
+  var cards = document.querySelectorAll('.article-card');
+  input.addEventListener('input', function () {
+    var query = input.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      var heading = card.querySelector('h3');
+      var title = heading ? heading.textContent.toLowerCase() : '';
+      card.classList.toggle('search-hidden', query.length > 0 && title.indexOf(query) === -1);
+    });
+  });
+})();
+</script>
 </body>
 </html>
