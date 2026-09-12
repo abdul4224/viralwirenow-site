@@ -11,18 +11,26 @@
 
 <link rel="alternate" type="application/rss+xml" title="ViralWireNow" href="/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/viralwirenow-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
 </head>
 <body>
 <header class="site-header">
 <div class="container">
 <a class="site-title" href="/">ViralWireNow</a>
+<div class="site-search">
+<img src="/assets/icons/viralwirenow-icon.svg" alt="" width="20" height="20" aria-hidden="true">
+<input type="search" id="site-search-input" placeholder="Search articles on this page…" aria-label="Search articles">
+</div>
 <nav class="main-nav">
 <a href="/categories/technology.html">Technology</a><a href="/categories/ai.html">AI</a><a href="/categories/business.html">Business</a><a href="/categories/science.html">Science</a>
 </nav>
 </div>
 </header>
 <main class="container">
-<h1>Privacy Policy</h1><p>This site uses third-party advertising (Adsterra) which may use cookies to serve relevant ads. By using this site, you consent to this use. We do not sell personal data. Contact us with any privacy questions.</p>
+<h1>Privacy Policy</h1><p>This page explains what happens with your data when you visit ViralWireNow.</p><h2>Advertising and cookies</h2><p>This site displays advertising served by Adsterra. Adsterra and its advertising partners may use cookies, web beacons, or similar technologies to collect information about your visits to this and other websites, in order to provide advertisements about goods and services of interest to you. This is standard behavior for third-party ad networks and is not something we directly control.</p><p>If you are in a region where consent is required before non-essential cookies are set (such as the EU under GDPR, or the UK), please be aware that continuing to browse this site with ads enabled may result in such cookies being set by our advertising partners. You can control or delete cookies through your browser settings at any time.</p><h2>What we collect ourselves</h2><p>We do not require account creation to read this site and do not collect personal information beyond what your browser sends automatically (such as basic server logs for security and performance purposes). We do not sell personal data.</p><h2>Third-party links</h2><p>Articles may link to external sources. We are not responsible for the privacy practices of external sites you visit from our links.</p><h2>Contact</h2><p>Questions about this policy can be directed to us via the Contact page.</p>
 </main>
 <div class="ad-slot ad-footer container" id="ad-footer"><script>
   atOptions = {
@@ -47,5 +55,25 @@
 </div>
 </footer>
 
+<script>
+// Lightweight client-side filter for the header search box: hides any
+// .article-card on THIS page whose title doesn't match what's typed.
+// This is a same-page filter, not a site-wide search index — with the
+// article volume this bot publishes at, that's a reasonable, zero-backend
+// way to make the search box actually do something rather than sit inert.
+(function () {
+  var input = document.getElementById('site-search-input');
+  if (!input) return;
+  var cards = document.querySelectorAll('.article-card');
+  input.addEventListener('input', function () {
+    var query = input.value.trim().toLowerCase();
+    cards.forEach(function (card) {
+      var heading = card.querySelector('h3');
+      var title = heading ? heading.textContent.toLowerCase() : '';
+      card.classList.toggle('search-hidden', query.length > 0 && title.indexOf(query) === -1);
+    });
+  });
+})();
+</script>
 </body>
 </html>
