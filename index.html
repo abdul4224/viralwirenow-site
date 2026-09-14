@@ -8,7 +8,7 @@
 <link rel="canonical" href="https://viralwirenow.com">
 
 
-
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ViralWireNow", "url": "https://viralwirenow.com", "logo": "https://viralwirenow.com/assets/icons/viralwirenow-icon.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "ViralWireNow", "url": "https://viralwirenow.com"}</script>
 <link rel="alternate" type="application/rss+xml" title="ViralWireNow" href="/feed.xml">
 <link rel="stylesheet" href="/assets/style.css">
 <link rel="icon" type="image/svg+xml" href="/assets/icons/viralwirenow-icon.svg">
@@ -25,7 +25,8 @@
 </a>
 <div class="site-search">
 <img src="/assets/icons/viralwirenow-icon.svg" alt="" width="20" height="20" aria-hidden="true">
-<input type="search" id="site-search-input" placeholder="Search articles on this page…" aria-label="Search articles">
+<input type="search" id="site-search-input" placeholder="Search articles…" aria-label="Search articles" autocomplete="off">
+<div class="search-results" id="site-search-results" hidden></div>
 </div>
 <nav class="main-nav">
 <a href="/categories/technology.html">Technology</a><a href="/categories/ai.html">AI</a><a href="/categories/business.html">Business</a><a href="/categories/science.html">Science</a>
@@ -34,10 +35,6 @@
 </header>
 <main class="container">
 <div class="article-grid">
-<article class="article-card"><a href="/articles/elninos-impact-on-hurricane-season.html"><div class="thumb"><img src="/media/elninos-impact-on-hurricane-season-small.webp" alt="El Niño's Impact on the Slowest Atlantic Hurricane Season" loading="lazy" width="480" height="270"></div><div class="card-body"><h3>El Niño's Impact on the Slowest Atlantic Hurricane Season</h3><p class="excerpt">El Niño is creating conditions for a record-low Atlantic hurricane season. Learn why the Atlantic has been unusually quiet this year.</p><div class="meta">2026-09-13</div></div></a></article>
-<article class="article-card"><a href="/articles/saudi-oil-pipeline-closure-iraq.html"><div class="thumb"><img src="/media/saudi-oil-pipeline-closure-iraq-small.webp" alt="Saudi Oil Pipeline Closure: Iraq Under Pressure" loading="lazy" width="480" height="270"></div><div class="card-body"><h3>Saudi Oil Pipeline Closure: Iraq Under Pressure</h3><p class="excerpt">Saudi Arabia's closure of a critical oil pipeline after drone attacks from Iraq has put the country under pressure. Learn about the geopolitical implications.</p><div class="meta">2026-09-12</div></div></a></article>
-<article class="article-card"><a href="/articles/yemen-crisis-houthis-advance.html"><div class="thumb"><img src="/media/yemen-crisis-houthis-advance-small.webp" alt="Yemen Crisis: 50,000 Civilians Flee as Houthis Advance" loading="lazy" width="480" height="270"></div><div class="card-body"><h3>Yemen Crisis: 50,000 Civilians Flee as Houthis Advance</h3><p class="excerpt">Over 50,000 civilians flee as the Houthis expand their control along Yemen's Red Sea coast. Learn about the impact and international reaction to the crisis.</p><div class="meta">2026-09-12</div></div></a></article>
-<article class="article-card"><a href="/articles/yemen-houthi-red-sea-island.html"><div class="thumb"><img src="/media/yemen-houthi-red-sea-island-small.webp" alt="Houthi Capture Threatens Red Sea Shipping" loading="lazy" width="480" height="270"></div><div class="card-body"><h3>Houthi Capture Threatens Red Sea Shipping</h3><p class="excerpt">Yemen’s Houthi forces capture a strategic Red Sea island, potentially disrupting global shipping routes and economic stability in the region.</p><div class="meta">2026-09-12</div></div></a></article>
 </div>
 </main>
 <div class="ad-slot ad-footer container" id="ad-footer"><script>
@@ -54,6 +51,8 @@
 <div class="container">
 <div class="footer-links">
 <a href="/about.html">About</a>
+<a href="/editorial-policy.html">Editorial Policy</a>
+<a href="/corrections-policy.html">Corrections</a>
 <a href="/contact.html">Contact</a>
 <a href="/privacy-policy.html">Privacy Policy</a>
 <a href="/disclaimer.html">Disclaimer</a>
@@ -64,22 +63,56 @@
 </footer>
 
 <script>
-// Lightweight client-side filter for the header search box: hides any
-// .article-card on THIS page whose title doesn't match what's typed.
-// This is a same-page filter, not a site-wide search index — with the
-// article volume this bot publishes at, that's a reasonable, zero-backend
-// way to make the search box actually do something rather than sit inert.
+// Site-wide article search: lazy-fetches /search-index.json (once, on first
+// interaction) and shows matching articles as a dropdown — this is what
+// makes the header search box search EVERY published article regardless
+// of which page you're viewing, not just cards already on the current page.
 (function () {
   var input = document.getElementById('site-search-input');
-  if (!input) return;
-  var cards = document.querySelectorAll('.article-card');
-  input.addEventListener('input', function () {
-    var query = input.value.trim().toLowerCase();
-    cards.forEach(function (card) {
-      var heading = card.querySelector('h3');
-      var title = heading ? heading.textContent.toLowerCase() : '';
-      card.classList.toggle('search-hidden', query.length > 0 && title.indexOf(query) === -1);
+  var results = document.getElementById('site-search-results');
+  if (!input || !results) return;
+
+  var index = null;
+  var fetching = false;
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
+  }
+
+  function loadIndex(onLoaded) {
+    if (index) { onLoaded(); return; }
+    if (fetching) return;
+    fetching = true;
+    fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (data) {
+      index = data;
+      fetching = false;
+      onLoaded();
+    }).catch(function () { fetching = false; });
+  }
+
+  function render(query) {
+    if (!query || !index) { results.hidden = true; return; }
+    var q = query.toLowerCase();
+    var matches = index.filter(function (a) {
+      return a.title.toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 8);
+    results.innerHTML = matches.length
+      ? matches.map(function (a) {
+          return '<a href="/articles/' + a.slug + '.html">' + escapeHtml(a.title) + '</a>';
+        }).join('')
+      : '<div class="no-results">No articles found</div>';
+    results.hidden = false;
+  }
+
+  input.addEventListener('focus', function () { loadIndex(function () {}); });
+  input.addEventListener('input', function () {
+    var query = input.value.trim();
+    if (index) { render(query); } else { loadIndex(function () { render(query); }); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.site-search')) { results.hidden = true; }
   });
 })();
 </script>
