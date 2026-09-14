@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
 Sitemap: https://viralwirenow.com/sitemap.xml
+Sitemap: https://viralwirenow.com/news-sitemap.xml
