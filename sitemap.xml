@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://viralwirenow.com</loc></url>
-<url><loc>https://viralwirenow.com/categories/technology.html</loc></url>
-<url><loc>https://viralwirenow.com/categories/ai.html</loc></url>
-<url><loc>https://viralwirenow.com/categories/business.html</loc></url>
-<url><loc>https://viralwirenow.com/categories/science.html</loc></url>
-<url><loc>https://viralwirenow.com/articles/elninos-impact-on-hurricane-season.html</loc></url>
-<url><loc>https://viralwirenow.com/articles/saudi-oil-pipeline-closure-iraq.html</loc></url>
-<url><loc>https://viralwirenow.com/articles/yemen-crisis-houthis-advance.html</loc></url>
-<url><loc>https://viralwirenow.com/articles/yemen-houthi-red-sea-island.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url><loc>https://viralwirenow.com</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/categories/technology.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/categories/ai.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/categories/business.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/categories/science.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/about.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/contact.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/privacy-policy.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/disclaimer.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/terms.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/editorial-policy.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/corrections-policy.html</loc><lastmod>2026-09-14</lastmod></url>
+<url><loc>https://viralwirenow.com/authors/editorial-team.html</loc><lastmod>2026-09-14</lastmod></url>
 </urlset>
