@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ViralWireNow Editorial Team | ViralWireNow</title>
+<meta name="description" content="Author profile for ViralWireNow Editorial Team on ViralWireNow">
+<link rel="canonical" href="https://viralwirenow.com/authors/editorial-team.html">
+
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ViralWireNow", "url": "https://viralwirenow.com", "logo": "https://viralwirenow.com/assets/icons/viralwirenow-icon.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "ViralWireNow", "url": "https://viralwirenow.com"}</script>
+<link rel="alternate" type="application/rss+xml" title="ViralWireNow" href="/feed.xml">
+<link rel="stylesheet" href="/assets/style.css">
+<link rel="icon" type="image/svg+xml" href="/assets/icons/viralwirenow-icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+</head>
+<body>
+<header class="site-header">
+<div class="container">
+<a class="site-title" href="/">
+  <img src="/assets/icons/viralwirenow-icon.svg" alt="" width="28" height="28" aria-hidden="true">
+  <span>ViralWireNow</span>
+</a>
+<div class="site-search">
+<img src="/assets/icons/viralwirenow-icon.svg" alt="" width="20" height="20" aria-hidden="true">
+<input type="search" id="site-search-input" placeholder="Search articles…" aria-label="Search articles" autocomplete="off">
+<div class="search-results" id="site-search-results" hidden></div>
+</div>
+<nav class="main-nav">
+<a href="/categories/technology.html">Technology</a><a href="/categories/ai.html">AI</a><a href="/categories/business.html">Business</a><a href="/categories/science.html">Science</a>
+</nav>
+</div>
+</header>
+<main class="container">
+<h1>ViralWireNow Editorial Team</h1><p>The ViralWireNow editorial team researches and publishes news coverage using a multi-source verification process, with AI-assisted writing and automated originality and factual-consistency checks before publication. See our <a href="/editorial-policy.html">Editorial Policy</a> for details on our process.</p>
+</main>
+<div class="ad-slot ad-footer container" id="ad-footer"><script>
+  atOptions = {
+    'key' : 'f0e7db8c39a639782715feb62fb7aee6',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script async src="https://www.highrevenueformat.com/f0e7db8c39a639782715feb62fb7aee6/invoke.js"></script></div>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-links">
+<a href="/about.html">About</a>
+<a href="/editorial-policy.html">Editorial Policy</a>
+<a href="/corrections-policy.html">Corrections</a>
+<a href="/contact.html">Contact</a>
+<a href="/privacy-policy.html">Privacy Policy</a>
+<a href="/disclaimer.html">Disclaimer</a>
+<a href="/terms.html">Terms</a>
+</div>
+<p>&copy; 2026 ViralWireNow. All rights reserved.</p>
+</div>
+</footer>
+
+<script>
+// Site-wide article search: lazy-fetches /search-index.json (once, on first
+// interaction) and shows matching articles as a dropdown — this is what
+// makes the header search box search EVERY published article regardless
+// of which page you're viewing, not just cards already on the current page.
+(function () {
+  var input = document.getElementById('site-search-input');
+  var results = document.getElementById('site-search-results');
+  if (!input || !results) return;
+
+  var index = null;
+  var fetching = false;
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function loadIndex(onLoaded) {
+    if (index) { onLoaded(); return; }
+    if (fetching) return;
+    fetching = true;
+    fetch('/search-index.json').then(function (r) { return r.json(); }).then(function (data) {
+      index = data;
+      fetching = false;
+      onLoaded();
+    }).catch(function () { fetching = false; });
+  }
+
+  function render(query) {
+    if (!query || !index) { results.hidden = true; return; }
+    var q = query.toLowerCase();
+    var matches = index.filter(function (a) {
+      return a.title.toLowerCase().indexOf(q) !== -1;
+    }).slice(0, 8);
+    results.innerHTML = matches.length
+      ? matches.map(function (a) {
+          return '<a href="/articles/' + a.slug + '.html">' + escapeHtml(a.title) + '</a>';
+        }).join('')
+      : '<div class="no-results">No articles found</div>';
+    results.hidden = false;
+  }
+
+  input.addEventListener('focus', function () { loadIndex(function () {}); });
+  input.addEventListener('input', function () {
+    var query = input.value.trim();
+    if (index) { render(query); } else { loadIndex(function () { render(query); }); }
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.site-search')) { results.hidden = true; }
+  });
+})();
+</script>
+</body>
+</html>
