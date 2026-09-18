@@ -6,6 +6,10 @@
 <title>Dramatic Recording Could Provide Clues in NBC4 Helicopter Crash | ViralWireNow</title>
 <meta name="description" content="A dramatic recording could help clarify the cause of the NBC4 helicopter crash in Los Angeles, as the investigation continues.">
 <link rel="canonical" href="https://viralwirenow.com/articles/dramatic-recording-nbc4-helicopter-crash.html">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:site_name" content="ViralWireNow">
+<meta property="article:published_time" content="2026-09-17T08:37:00.464742Z">
+<meta property="article:section" content="Technology">
 <meta property="og:title" content="Dramatic Recording Could Provide Clues in NBC4 Helicopter Crash">
 <meta property="og:description" content="A dramatic recording could help clarify the cause of the NBC4 helicopter crash in Los Angeles, as the investigation continues.">
 <meta property="og:url" content="https://viralwirenow.com/articles/dramatic-recording-nbc4-helicopter-crash.html">
@@ -129,7 +133,8 @@
     if (!query || !index) { results.hidden = true; return; }
     var q = query.toLowerCase();
     var matches = index.filter(function (a) {
-      return a.title.toLowerCase().indexOf(q) !== -1;
+      return (a.title + ' ' + (a.excerpt || '') + ' ' + (a.category || ''))
+        .toLowerCase().indexOf(q) !== -1;
     }).slice(0, 8);
     results.innerHTML = matches.length
       ? matches.map(function (a) {

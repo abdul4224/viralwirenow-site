@@ -6,6 +6,10 @@
 <title>Trump Criticizes Supreme Court Over Ballot Decision | ViralWireNow</title>
 <meta name="description" content="President Trump has criticized Supreme Court justices after a ruling on mail ballots.">
 <link rel="canonical" href="https://viralwirenow.com/articles/trump-supreme-court-ballot-ruling.html">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:site_name" content="ViralWireNow">
+<meta property="article:published_time" content="2026-09-15T22:20:53.945287Z">
+<meta property="article:section" content="Technology">
 <meta property="og:title" content="Trump Criticizes Supreme Court Over Ballot Decision">
 <meta property="og:description" content="President Trump has criticized Supreme Court justices after a ruling on mail ballots.">
 <meta property="og:url" content="https://viralwirenow.com/articles/trump-supreme-court-ballot-ruling.html">
@@ -128,7 +132,8 @@
     if (!query || !index) { results.hidden = true; return; }
     var q = query.toLowerCase();
     var matches = index.filter(function (a) {
-      return a.title.toLowerCase().indexOf(q) !== -1;
+      return (a.title + ' ' + (a.excerpt || '') + ' ' + (a.category || ''))
+        .toLowerCase().indexOf(q) !== -1;
     }).slice(0, 8);
     results.innerHTML = matches.length
       ? matches.map(function (a) {

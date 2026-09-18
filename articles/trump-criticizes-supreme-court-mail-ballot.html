@@ -6,6 +6,10 @@
 <title>Trump Criticizes Supreme Court Over Mail Ballot Loss | ViralWireNow</title>
 <meta name="description" content="President Trump has harshly criticized the Supreme Court over a recent ruling on mail ballots, questioning his appointees&#39; decisions.">
 <link rel="canonical" href="https://viralwirenow.com/articles/trump-criticizes-supreme-court-mail-ballot.html">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:site_name" content="ViralWireNow">
+<meta property="article:published_time" content="2026-09-15T16:04:42.392582Z">
+<meta property="article:section" content="Technology">
 <meta property="og:title" content="Trump Criticizes Supreme Court Over Mail Ballot Loss">
 <meta property="og:description" content="President Trump has harshly criticized the Supreme Court over a recent ruling on mail ballots, questioning his appointees' decisions.">
 <meta property="og:url" content="https://viralwirenow.com/articles/trump-criticizes-supreme-court-mail-ballot.html">
@@ -129,7 +133,8 @@
     if (!query || !index) { results.hidden = true; return; }
     var q = query.toLowerCase();
     var matches = index.filter(function (a) {
-      return a.title.toLowerCase().indexOf(q) !== -1;
+      return (a.title + ' ' + (a.excerpt || '') + ' ' + (a.category || ''))
+        .toLowerCase().indexOf(q) !== -1;
     }).slice(0, 8);
     results.innerHTML = matches.length
       ? matches.map(function (a) {
