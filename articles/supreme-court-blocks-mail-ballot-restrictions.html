@@ -6,6 +6,10 @@
 <title>Supreme Court Blocks Mail Ballot Restrictions for Midterms | ViralWireNow</title>
 <meta name="description" content="The US Supreme Court has blocked state mail ballot restrictions ahead of the midterm elections, upholding the right to vote by mail in key states.">
 <link rel="canonical" href="https://viralwirenow.com/articles/supreme-court-blocks-mail-ballot-restrictions.html">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:site_name" content="ViralWireNow">
+<meta property="article:published_time" content="2026-09-15T06:04:54.198305Z">
+<meta property="article:section" content="Technology">
 <meta property="og:title" content="Supreme Court Blocks Mail Ballot Restrictions for Midterms">
 <meta property="og:description" content="The US Supreme Court has blocked state mail ballot restrictions ahead of the midterm elections, upholding the right to vote by mail in key states.">
 <meta property="og:url" content="https://viralwirenow.com/articles/supreme-court-blocks-mail-ballot-restrictions.html">
@@ -46,9 +50,9 @@
 <h1>Supreme Court Blocks Mail Ballot Restrictions for Midterms</h1>
 <div class="post-meta">2026-09-15 &middot; By <a href="/authors/editorial-team.html">ViralWireNow Editorial</a></div>
 <div class="hero-image"><picture><source type="image/webp" srcset="/media/supreme-court-blocks-mail-ballot-restrictions-small.webp 480w, /media/supreme-court-blocks-mail-ballot-restrictions-medium.webp 800w, /media/supreme-court-blocks-mail-ballot-restrictions-large.webp 1600w" sizes="(max-width: 600px) 480px, (max-width: 1000px) 800px, 1600px"><img src="/media/supreme-court-blocks-mail-ballot-restrictions-medium.jpg" alt="Supreme Court Blocks Mail Ballot Restrictions for Midterms" width="1600" height="1066" loading="eager"></picture></div>
-<p>In a significant ruling, the US Supreme Court has prevented the implementation of broad restrictions on mail-in voting for the upcoming midterm elections. This decision comes amid ongoing debates about the accessibility and security of voting methods, particularly as the nation grapples with the challenges of the ongoing pandemic and the need for safe, accessible voting options.</p>
+<p>In a significant ruling, the US Supreme Court has prevented the implementation of broad restrictions on mail-in voting for the upcoming midterm elections. This decision comes amid ongoing debates about the accessibility and security of voting methods, and about how far states may go in tightening the rules for absentee ballots.</p>
 <div class="video-embed"><iframe src="https://www.youtube.com/embed/gi8ld1zZ8lo" title="Video summary" loading="lazy" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe></div>
-<h2>Key Ruling on Mail Voting</h2><p>The Supreme Court's decision is a major victory for advocates of mail-in voting, which has seen a surge in use due to the pandemic. The ruling blocks several state-level restrictions that would have limited the ability of voters to cast their ballots by mail, ensuring that millions of Americans can continue to participate in the democratic process safely and conveniently.</p>
+<h2>Key Ruling on Mail Voting</h2><p>The Supreme Court's decision is a major victory for advocates of mail-in voting, which has been used more widely in recent election cycles. The ruling blocks several state-level restrictions that would have limited the ability of voters to cast their ballots by mail, ensuring that millions of Americans can continue to participate in the democratic process conveniently.</p>
 <div class="ad-slot" id="ad-in_content_mid" style="min-height:100px;"><script async="async" data-cfasync="false" src="https://pl31285164.profitableratecpmnetwork.com/92e7f50a01e4358215cec7f36df56e7f/invoke.js"></script>
 <div id="container-92e7f50a01e4358215cec7f36df56e7f"></div></div>
 <h2>FAQ</h2>
@@ -129,7 +133,8 @@
     if (!query || !index) { results.hidden = true; return; }
     var q = query.toLowerCase();
     var matches = index.filter(function (a) {
-      return a.title.toLowerCase().indexOf(q) !== -1;
+      return (a.title + ' ' + (a.excerpt || '') + ' ' + (a.category || ''))
+        .toLowerCase().indexOf(q) !== -1;
     }).slice(0, 8);
     results.innerHTML = matches.length
       ? matches.map(function (a) {

@@ -6,6 +6,10 @@
 <title>Study: Eat at Least 2.5 Servings of Whole Grain Daily | ViralWireNow</title>
 <meta name="description" content="A new study suggests eating at least 2.5 servings of whole grain per day can improve health. Learn more about the benefits of whole grains.">
 <link rel="canonical" href="https://viralwirenow.com/articles/study-whole-grain-intake.html">
+<meta name="robots" content="max-image-preview:large">
+<meta property="og:site_name" content="ViralWireNow">
+<meta property="article:published_time" content="2026-09-16T21:48:13.116514Z">
+<meta property="article:section" content="Science">
 <meta property="og:title" content="Study: Eat at Least 2.5 Servings of Whole Grain Daily">
 <meta property="og:description" content="A new study suggests eating at least 2.5 servings of whole grain per day can improve health. Learn more about the benefits of whole grains.">
 <meta property="og:url" content="https://viralwirenow.com/articles/study-whole-grain-intake.html">
@@ -128,7 +132,8 @@
     if (!query || !index) { results.hidden = true; return; }
     var q = query.toLowerCase();
     var matches = index.filter(function (a) {
-      return a.title.toLowerCase().indexOf(q) !== -1;
+      return (a.title + ' ' + (a.excerpt || '') + ' ' + (a.category || ''))
+        .toLowerCase().indexOf(q) !== -1;
     }).slice(0, 8);
     results.innerHTML = matches.length
       ? matches.map(function (a) {
