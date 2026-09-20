@@ -1,0 +1,6 @@
+NAYI DESIGN WALI WEBSITE FILES (sirf badli hui files: saare articles, homepage, categories, trust pages, CSS, sitemap...)
+1. Folder "site" ke andar ki saari files apne GitHub repo mein upload karein (same folder structure) aur Commit karein.
+2. Repo se "_vwn_seo_tools" folder aur "FIX-SITE.ps1" delete karein.
+3. Contact page par abhi "email is being set up" likha hai (main aapka email nahi jaanta). Bot .env mein SITE_CONTACT_EMAIL
+   set karke  .\run_bot.ps1 rebuild-site -Publish  chalayein.
+4. 1-3 minute baad https://viralwirenow.com/ dekhein (Ctrl+F5), phir Search Console mein sitemap.xml dobara Submit karein.
