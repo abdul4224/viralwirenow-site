@@ -1,11 +1,4 @@
 # ViralWireNow — ads.txt
-# Authorized digital sellers (IAB Tech Lab spec)
-#
-# ---------------------------------------------------------------
-# Adsterra (publisher account)
-# Aap ka Adsterra publisher ID aap ke apne ad tags se liya gaya hai:
-#   pl31285164.profitableratecpmnetwork.com/...
-# Agar Adsterra dashboard mein koi doosra ID dikhe, sirf neeche wali
-# line ka number badal dein.
-# ---------------------------------------------------------------
+# Authorized digital sellers
+
 adsterra.com, 31285164, DIRECT
